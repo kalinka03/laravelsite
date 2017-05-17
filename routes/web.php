@@ -11,17 +11,54 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [
+    'as' => 'main',
+    'uses' => 'MainController@showMain'
+]);
+// Route::get('/catalog', [
+//     'as' => 'catalog',
+//     'uses' => 'CatalogController@showCatalog'
+// ]);
+
+
+
+Route::get('/catalog/{id?}', [
+    'as' => 'catalog',
+    'uses' => 'CatalogController@showCategory'
+]);
+
+
+
+
+
+Route::get('/ad/{id?}', [
+    'as' => 'ad',
+    'uses' => 'AdController@showAd'
+]);
+
+Route::get('/create', [
+    'as' => 'create',
+    'middleware' => 'auth',
+    'uses' => 'CreateAdController@createAd'
+]);
+Route::post('/create', [
+    'as' => 'create',
+    'middleware' => 'auth',
+    'uses' => 'CreateAdController@store'
+]);
+
+
+
+Route::get('/about', function() {
+    return view('about');
+})->name('about');
+Route::group(['middleware' => ['auth','admin']], function () {
+    Route::get('/admin', [
+        'as' => 'admin.main',
+        'uses' => function() {
+            return 'hello admin';
+        }
+    ]);
 });
-Route::get('message', function () {
-    return view('message');
-});
-Route::get('us', function () {
-    return view('aboutUs');
-});
-Route::get('contacts', function () {
-    return view('contacts');
-});
-// Route::get('/', ['user' => "HomeController@index", 'as'=> 'home']);
-// Route::get('message/{id}/edit', ['uses' => HomeController@edit', ['as' => message.edit]);
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
