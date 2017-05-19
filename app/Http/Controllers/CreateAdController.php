@@ -10,10 +10,6 @@ class CreateAdController extends Controller
     public function createAd(Request $request)
     {
         $categories = Category::all();
-//  foreach ($categories as $category) {
-//             $category->select ('title')->get();
-//         }
-
         return view('createAd', ['categories' => $categories]);
       }
 public function store(Request $request){
@@ -23,7 +19,6 @@ $this ->validate($request,[
         'title' => 'required',
         'text' => 'required',]);
     $user = Auth::user();
-
     $ad = new Ad();
     $ad->title = $request->get('title');
     $ad->text = $request->get('text');

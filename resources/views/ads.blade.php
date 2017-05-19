@@ -10,15 +10,15 @@
 
         <span> юзер -  {{ $user->name }}</span>
         <br> </br>
-
-             <li>{{ $ads->title }}</li>
-    <p> {{ $ads->text }}</p>
-    <span>дата створення  {{ $ads->created_at }}</span> 
+        @foreach($ads as $key2 => $ad)
+             <li>{{ $ad->title }}</li>
+    <p> {{ $ad->text }}</p>
+    <span>дата створення  {{ $ad->created_at }}</span>
     <br> </br>
-    <span> дата видалення {{ $ads->updated_at }}</span>
+    <span> дата видалення {{ $ad->updated_at }}</span>
     <br> </br>
+        @endforeach
 
-   
 
     </div>
 

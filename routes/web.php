@@ -46,9 +46,6 @@ Route::post('/create', [
     'middleware' => 'auth',
     'uses' => 'CreateAdController@store'
 ]);
-
-
-
 Route::get('/about', function() {
     return view('about');
 })->name('about');

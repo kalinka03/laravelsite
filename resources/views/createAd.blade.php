@@ -10,10 +10,6 @@
 {{ csrf_field() }}
 
 	<select  style="width:150px" name="category" id="">
-            
-          
-
-           
    @foreach( $categories as $category )
             {
 
@@ -21,8 +17,6 @@
               @endforeach
             
         }
-        
-
     </select>
 
      <input type="text" name='title' placeholder="Назва">

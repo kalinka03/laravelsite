@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>Оголошення</h1>
+    <h1 align="center">Оголошення</h1>
 
  <div class="catalog">
 
@@ -14,7 +14,7 @@
                 <tr>
                     <td>
            
-            <a href="{{ route('catalog',['id' => $category->id]) }}">
+            <a  style="font-size: 18px; text-align:center; color: darkgreen"  href="{{ route('catalog',['id' => $category->id]) }}">
                 Категорія {{ $category->title }}
             </a>
             <br> </br>
@@ -27,7 +27,7 @@
                 @foreach($category->mainPageAds as $key2 => $ad)
 
 
-                      <a href="{{ route('ad',['id' => $ad->id]) }}">{{ ++$key2 }}. {{ $ad->title }}</a>
+                      <a  style="font-size: 18px; color: mediumvioletred" href="{{ route('ad',['id' => $ad->id]) }}">{{ ++$key2 }}. {{ $ad->title }}</a>
                        <br> </br>
 
                 @endforeach
@@ -35,15 +35,9 @@
 
         @endforeach
                 </td>
-                 
 
  </table>
     </div>
-
-    <form method="POST" action="/profile">
-        {{ csrf_field() }}
-
-    </form>
 
 
 @endsection

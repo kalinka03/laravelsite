@@ -15,13 +15,13 @@ class AdController extends Controller
             $ads = Ad::all();
         }
         else {
-            $ads = Ad::findOrFail($id);
+            $ads[] = Ad::findOrFail($id);
         }
          dump($ads);
         $user = Auth::user();
         return view('ads',
             [
-                'ads' => Ad::all(),
+
                 'ads' => $ads, 'user'=>$user
             ]
         );
