@@ -18,6 +18,7 @@ $this ->validate($request,[
         'category' => 'required',
         'title' => 'required',
         'text' => 'required',]);
+
     $user = Auth::user();
     $ad = new Ad();
     $ad->title = $request->get('title');
@@ -26,6 +27,11 @@ $this ->validate($request,[
     $ad->user()->associate($user);
 //    dump($ad);
     $ad->save();
+//    dump ($ad->id);
+    if( $_FILES['picture'] ) {
+        $fileName = 'picture_' . $ad->id . '.jpg';
+        move_uploaded_file($_FILES['picture']['tmp_name'], 'ads_files/pictures/' . $fileName);
+    }
     return redirect('/');
 
 }

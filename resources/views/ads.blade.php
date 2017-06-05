@@ -4,21 +4,17 @@
 
 @section('content')
 
-    <h1>Оголошення</h1>
+    <h1>{{ trans('index_info.ads') }}</h1>
+    <div style=font-size:20px;">
+        <p>{{$ads->title}}</p>
+        @if ( file_exists( 'ads_files/pictures/picture_'.$ads->id.'.jpg' ) )
 
-    <div class="catalog">
+            <img src="/ads_files/pictures/picture_{{$ads->id}}.jpg" style="max-width:200px"; alt="" >
 
-        <span> юзер -  {{ $user->name }}</span>
-        <br> </br>
-        @foreach($ads as $key2 => $ad)
-             <li>{{ $ad->title }}</li>
-    <p> {{ $ad->text }}</p>
-    <span>дата створення  {{ $ad->created_at }}</span>
-    <br> </br>
-    <span> дата видалення {{ $ad->updated_at }}</span>
-    <br> </br>
-        @endforeach
-
+        @endif
+        <p>{{$ads->text}}</p>
+        <p>дата створення {{$ads->created_at}}</p>
+        <p>юзер {{$user->name}}</p>
 
     </div>
 

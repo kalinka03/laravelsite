@@ -4,7 +4,18 @@
 
 @section('content')
 
-    <h1 align="center">Оголошення</h1>
+    {{ trans('main.header') }}
+
+    <a href="{{ route('about') }}">route /about</a>
+
+
+
+
+
+
+
+
+    <h1 align="center">{{ trans('index_info.ads_Main') }}</h1>
 
  <div class="catalog">
 

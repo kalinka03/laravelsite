@@ -1,36 +1,91 @@
 <?php
+
 namespace App\Http\Controllers;
+use App\User;
 use App\Category;
-use App\{User,Ad};
-use Illuminate\Http\Request;
-use DB;
+use App\Ad;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 class CatalogController extends Controller
 {
+
     public function showCategory($id = null)
     {
         $ads = null;
         $category=null;
         if (!$id) {
-            $ads = Ad::all();
+            $ads = Ad::paginate(3);
             $categories=Category::all();
+
         } else {
-            $categories[] = Category::findOrFail($id);
-            $category= $categories[0];
-            $ads=$category->ads;
+            $category= Category::findOrFail($id);
+            $categories[]= $category;
+            /*$ads=$category->ads; */
+            $ads = Ad::where('category_id', '=', $id)->paginate(3);
         }
-//        dump($ads);
 
         return view('catalog',
             [
-
                 'categories' =>$categories,
-                'ad' => $ads
+                'ads' => $ads
             ]
         );
-
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//namespace App\Http\Controllers;
+//use App\Category;
+//use App\{User,Ad};
+//use Illuminate\Http\Request;
+//use Illuminate\Pagination\Paginator;
+//use DB;
+//use Illuminate\Support\Facades\Auth;
+//class CatalogController extends Controller
+//{
+//    public function showCategory($id = null)
+//    {
+//        $ads = null;
+//        $category=null;
+//        if (!$id) {
+//            $ads = Ads::paginate(2);
+//            $categories=Category::all();
+//        } else {
+//            $categories[] = Category::findOrFail($id);
+//            $category= $categories[0];
+//            $ads=$category->ads;
+//        }
+////        dump($ads);
+//
+//        return view('catalog',
+//            [
+//
+//                'categories' =>$categories,
+//                'ad' => $ads
+//            ]
+//        );
+//
+//    }
+//}
 
 //
 //

@@ -13,7 +13,29 @@ class MainController extends Controller
      */
       public function showMain( CategoryRepository $catRepo )
     {
-//            $category = new Category();
+        $categories = Category::all();
+ foreach ($categories as $category) {
+            $category->mainPageAds = $category->ads()->orderBy('created_at', 'desc')->take(5)->get();
+        }
+
+        return view('main', ['categories' => $categories]);
+    
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+$category = new Category();
 //        $category->title = 'auto';
 //        $category->save();
 
@@ -24,7 +46,7 @@ class MainController extends Controller
 //        $user->save();
 
 
- 
+
 
 
 //        $ad = new Ad();
@@ -34,20 +56,9 @@ class MainController extends Controller
 //        $ad->category()->associate( 1 );
 //        $ad->user()->associate( $user );
 //        $ad->save();
-       // $user = User::findOrFail(1);
-       // dump( $user->ads->first()->category->title );
+// $user = User::findOrFail(1);
+// dump( $user->ads->first()->category->title );
 
-       // foreach ($user->ads as $ad) {
-       //     dump( $ad->text );
-       // }
-
-
-        $categories = Category::all();
- foreach ($categories as $category) {
-            $category->mainPageAds = $category->ads()->orderBy('created_at', 'desc')->take(5)->get();
-        }
-
-        return view('main', ['categories' => $categories]);
-    
-    }
-}
+// foreach ($user->ads as $ad) {
+//     dump( $ad->text );
+// }

@@ -4,9 +4,9 @@
 
 @section('content')
 
-    <h1>Оголошення</h1>
+    <h1>{{ trans('index_info.ads') }}</h1>
 
-      <form method="POST" action="{{ route('create') }}">
+      <form method="POST" action="{{ route('create') }}" enctype="multipart/form-data">
 {{ csrf_field() }}
 
 	<select  style="width:150px" name="category" id="">
@@ -19,14 +19,16 @@
         }
     </select>
 
-     <input type="text" name='title' placeholder="Назва">
+     <input type="text" name='title' placeholder="{{ trans('index_info.name') }}">
      <br>
      </br>
      <textarea type="text" name='text' placeholder="Текст"></textarea>
       <br>
      </br>
-    <button type="submit">Створити нове оголошення</button>
-     
+          <br/>
+         Picture: <input type="file" name="picture" ><br/><br/>
+    <button type="submit">{{ trans('index_info.create') }}</button>
+
 
     </form>
 

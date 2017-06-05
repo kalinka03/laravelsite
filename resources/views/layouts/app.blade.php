@@ -22,22 +22,35 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ route('main') }}"><i class="fa fa-shopping-cart"></i> Головна</a></li>
-                            <li><a href="{{ route('catalog') }}"><i class="fa fa-shopping-cart"></i> Каталог</a></li>
-                            <li><a href="{{ route('about') }}"><i class="fa fa-user"></i> Про нас</a></li>
-                            <li><a href="{{ route('register') }}"><i class="fa fa-user"></i> Реєстрація</a></li>
-                            <li><a href="{{ route('login')}}"><i class="fa fa-user"></i> Вхід</a></li>
+                            <li><a href="{{ route('main') }}"><i class="fa fa-shopping-cart"></i> {{ trans('menu.main_message') }}</a></li>
+                            <li><a href="{{ route('catalog') }}"><i class="fa fa-shopping-cart"></i> {{ trans('menu.catalog') }}</a></li>
+                            <li><a href="{{ route('about') }}"><i class="fa fa-user"></i> {{ trans('menu.about') }}</a></li>
+                            <li><a href="{{ route('register') }}"><i class="fa fa-user"></i> {{ trans('menu.register') }}</a></li>
+                            <li><a href="{{ route('login')}}"><i class="fa fa-user"></i> {{ trans('menu.login') }}</a></li>
+
+                           <li> <a href="{{ route('logout') }}">
+                                   {{ trans('menu.logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                           </li>
                             <li><p><a href="{{ route('create') }}"><i class="fa fa-user"><img src="/plus.jpg" width="50"
-                                                                        height="50" alt="Додати">Додати оголошення</a></p></li>
+                                                                        height="50" alt="Додати">{{ trans('menu.create_ad') }}</a></p></li>
                         </ul>
                     </div>
+                </div>
+                <div class="col-sm-2">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/ua"><i class="fa fa-user"></i> UA</a></li>
+                        <li><a href="/en"><i class="fa fa-user"></i> ENG</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
 </header>
-
 
 <div class="container">
     @yield('content')
